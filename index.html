@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>SHOEBOK</h1>
+      <div class="header-container">
+        <div class="search-container">
+          <label for="search-box"
+            >Search: <input type="search" id="search-box"
+          /></label>
+        </div>
+
+        <label for="category"
+          >Category:
+          <select name="category" id="category">
+            <option value="all">All</option>
+            <option value="mens basketball">Mens Basketball</option>
+            <option value="running">Running</option>
+          </select></label
+        >
+
+        <label for="sort"
+          >Filter:
+          <select name="sort" id="sort">
+            <option value="ascending">Ascending</option>
+            <option value="descending">Descending</option>
+          </select></label
+        >
+      </div>
+    </header>
+    <!--Display-->
+    <div class="display"></div>
+    <script>
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          displayProducts(this.responseXML);
+        }
+      };
+      xmlhttp.open("GET", "shop.xml", true);
+      xmlhttp.send();
+
+      function displayProducts(shoe) {
+        var search = document
+          .getElementById("search-box")
+          .value.toString()
+          .toLowerCase();
+        var category = document.getElementById("category").value;
+        var shoesPrice = document.getElementById("sort").value;
+        var displayContainer = document.querySelector(".display");
+
+        displayContainer.innerHTML = "";
+
+        var products = shoe.getElementsByTagName("products");
+
+        var productData = [];
+
+        for (var i = 0; i < products.length; i++) {
+          var name = products[i]
+            .getElementsByTagName("name")[0]
+            .childNodes[0].nodeValue.toLowerCase();
+          var location =
+            products[i].getElementsByTagName("location")[0].childNodes[0]
+              .nodeValue;
+          var select = products[i]
+            .getElementsByTagName("category")[0]
+            .childNodes[0].nodeValue.toLowerCase();
+          var price = parseInt(
+            products[i].getElementsByTagName("price")[0].childNodes[0].nodeValue
+          );
+
+          if (
+            (name.includes(search) || !search) &&
+            (select === category || category === "all")
+          ) {
+            productData.push({
+              name: name,
+              location: location,
+              price: price,
+            });
+          }
+        }
+
+        if (shoesPrice === "ascending") {
+          productData.sort((a, b) => a.price - b.price);
+        } else if (shoesPrice === "descending") {
+          productData.sort((a, b) => b.price - a.price);
+        }
+
+        productData.forEach(function (product) {
+          var productContainer = document.createElement("div");
+          productContainer.className = "product-container";
+
+          var img = document.createElement("img");
+          img.src = product.location;
+          displayContainer.appendChild(img);
+
+          displayContainer.appendChild(productContainer);
+        });
+      }
+      //Everytime you released a key the displayProduct will be called
+      document
+        .getElementById("search-box")
+        .addEventListener("keyup", function () {
+          displayProducts(xmlhttp.responseXML);
+        });
+
+      //Everytime you change the category the displayProduct will be called
+      document
+        .getElementById("category")
+        .addEventListener("change", function () {
+          displayProducts(xmlhttp.responseXML);
+        });
+
+      //Everytime you change the Filter the displayProduct will be called
+      document.getElementById("sort").addEventListener("change", function () {
+        displayProducts(xmlhttp.responseXML);
+      });
+    </script>
+  </body>
+</html>
