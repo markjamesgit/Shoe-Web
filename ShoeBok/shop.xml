@@ -4,7 +4,7 @@
         <name>Nike InfinityRN 4</name>
         <price>8895</price>
         <category>Running</category>
-        <location>InfinityRN 4.jpg</location>
+        <location>./ShoeBok/InfinityRN 4.jpg</location>
     </products>
 
     <products>
@@ -12,48 +12,48 @@
         <name>Lebron XXI 'Queen Conch' EP</name>
         <price>11295</price>
         <category>Mens Basketball</category>
-        <location>Lebron 11.jpg</location>
+        <location>./ShoeBok/Lebron 11.jpg</location>
     </products>
 
     <products>
         <name>Luka 2 PF</name>
         <price>7395</price>
         <category>Mens Basketball</category>
-        <location>Luka 2.jpg</location>
+        <location>./ShoeBok/Luka 2.jpg</location>
     </products>
 
     <products>
         <name>Nike G.T. Cut 3 EP</name>
         <price>10295</price>
         <category>Mens Basketball</category>
-        <location>Nike GT.jpg</location>
+        <location>./ShoeBok/Nike GT.jpg</location>
     </products>
 
     <products>
         <name>Nike Revolution 6</name>
         <price>2895</price>
         <category>Running</category>
-        <location>Revolution 6.jpg</location>
+        <location>./ShoeBok/Revolution 6.jpg</location>
     </products>
 
     <products>
         <name>Nike Winflo 10</name>
         <price>5495</price>
         <category>Running</category>
-        <location>Winflo 10.jpg</location>
+        <location>./ShoeBok/Winflo 10.jpg</location>
     </products>
 
     <products>
         <name>Zion 3 PF</name>
         <price>7895</price>
         <category>Mens Basketball</category>
-        <location>Zion 3.jpg</location>
+        <location>./ShoeBok/Zion 3.jpg</location>
     </products>
 
     <products>
         <name>Zion Fly 5 Premium</name>
         <price>9395</price>
         <category>Running</category>
-        <location>Zoom Fly 5.jpg</location>
+        <location>./ShoeBok/Zoom Fly 5.jpg</location>
     </products>
 </shoes>
